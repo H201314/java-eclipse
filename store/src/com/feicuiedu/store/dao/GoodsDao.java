@@ -22,6 +22,6 @@ public class GoodsDao {
 	
 	public List<Goods> query(){
 		
-		return null
+		return null;
 	}
 }
