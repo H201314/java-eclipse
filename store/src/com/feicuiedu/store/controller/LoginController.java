@@ -3,29 +3,50 @@ package com.feicuiedu.store.controller;
 import java.util.Scanner;
 
 import com.feicuiedu.store.exception.ServiceException;
+import com.feicuiedu.store.service.SystemService;
 import com.feicuiedu.store.util.CommonUtils;
+import com.feicuiedu.store.view.LoginView;
 
 public class LoginController {
-	
-	private String message;
-	
-	public void login(Scanner scanner) throws ServiceException{
+
+	private LoginView loginView;
+	private SystemService systemService;
+
+	public String login() throws ServiceException {
+		Scanner scanner = new Scanner(System.in);
+		systemService = new SystemService();
+		loginView = new LoginView();
+		loginView.showLogin();
+		int loginSelected = scanner.nextInt();
+		String result = null;
 		
-		System.out.print("请输入用户名:");
-		String userName = scanner.nextLine();
-		if (!"admin".equals(userName)) {
-			message = CommonUtils.getPropValue("E001");
-			throw new ServiceException(message);
+		while (true) {
+
+			
+			if (1 == loginSelected) {
+
+				try {
+
+					systemService.login(scanner);
+				} catch (ServiceException e) {
+					System.out.println(e.getMessage());
+					continue;
+				}
+
+				System.out.print(CommonUtils.getPropValue("M001"));
+
+				result = "admin";
+
+			} else if (2 == loginSelected) {
+				result = "register";
+
+			}
+
+			break;
 		}
-		
-		System.out.print("请输入密码:");
-		String password = scanner.nextLine();
-		if (!"123456".equals(password)) {
-			message = CommonUtils.getPropValue("E002");
-			throw new ServiceException(message);
-		}
-		
-		System.out.print(CommonUtils.getPropValue("M001"));
+
+		scanner.close();
+		return result;
 	}
-	
+
 }

@@ -1,1 +1,0 @@
-id:${value}|价格:${value}|名称:${value}|库存:${value}

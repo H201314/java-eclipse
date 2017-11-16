@@ -9,6 +9,27 @@ import java.io.Serializable;
  */
 public class Goods implements Serializable {
 
+	public Goods() {
+		super();
+	}
+
+	public Goods(Integer id, Double price, Integer inventory, String name, String picIndex) {
+		super();
+		this.id = id;
+		this.price = price;
+		this.inventory = inventory;
+		this.name = name;
+		this.picIndex = picIndex;
+	}
+
+	public Goods(Integer id, Double price, Integer inventory, String name) {
+		super();
+		this.id = id;
+		this.price = price;
+		this.inventory = inventory;
+		this.name = name;
+	}
+	
 	private static final long serialVersionUID = -5194140204917718400L;
 
 	// 商品id

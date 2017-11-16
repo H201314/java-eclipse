@@ -37,6 +37,28 @@ public class CommonUtils {
 	}
 
 	/**
+	 * 项目根目录下读取fileName名称的文件里的内容并把字符串返回
+	 * @param fileName 文件名称
+	 * @return String  fileName里面的字符串
+	 */
+	public static String getStringFromText(String fileName) {
+		StringBuilder sb = new StringBuilder();
+		File file = new File(fileName);
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+
+			String strLine = null;
+			while ((strLine = br.readLine()) != null) {
+				sb.append(strLine).append("\n");
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return sb.toString();
+	}
+	/**
 	 * 根据键获取配置文件值
 	 * @param key 键字符串
 	 * @return
@@ -52,7 +74,7 @@ public class CommonUtils {
 			
 			e.printStackTrace();
 		}
-		return null;
+		return prop.getProperty(key);
 	}
 
 	public static void main(String[] args) {

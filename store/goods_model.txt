@@ -1,0 +1,1 @@
+id:${id}|价格:${price}|名称:${name}|库存:${inventory}
