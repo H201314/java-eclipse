@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Properties;
 
 /**
@@ -14,6 +16,7 @@ import java.util.Properties;
  */
 public class CommonUtils {
 
+	
 	/**
 	 * 项目根目录下读取fileName名称的文件里的内容并println出来
 	 * 
@@ -22,9 +25,13 @@ public class CommonUtils {
 	 */
 	public static void printText(String fileName) {
 
-		File file = new File(fileName);
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
+			InputStream is = CommonUtils.class.getClassLoader().getResourceAsStream(fileName);
+			
+			InputStreamReader isr = new InputStreamReader(is);
+			
+			BufferedReader br = new BufferedReader(isr);
+			
 
 			String strLine = null;
 			while ((strLine = br.readLine()) != null) {
@@ -45,7 +52,10 @@ public class CommonUtils {
 		StringBuilder sb = new StringBuilder();
 		File file = new File(fileName);
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
+			
+			InputStream is = CommonUtils.class.getClassLoader().getResourceAsStream(fileName);
+			InputStreamReader isr = new InputStreamReader(is);
+			BufferedReader br = new BufferedReader(isr);
 
 			String strLine = null;
 			while ((strLine = br.readLine()) != null) {
@@ -65,11 +75,13 @@ public class CommonUtils {
 	 */
 	public static String getPropValue(String key) {
 
-		File file = new File("config.properties");
+		//File file = new File("config.properties");
 
+		InputStream is = CommonUtils.class.getClassLoader().getResourceAsStream("config.properties");
+		
 		Properties prop = new Properties();
 		try {
-			prop.load(new FileInputStream(file));
+			prop.load(is);
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -77,7 +89,4 @@ public class CommonUtils {
 		return prop.getProperty(key);
 	}
 
-	public static void main(String[] args) {
-		CommonUtils.printText("login.txt");
-	}
 }

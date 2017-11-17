@@ -24,6 +24,10 @@ public class GoodsView {
 			showGoods(goods);
 		}
 	}
+	
+	/**
+	 * 显示商品维护中功能清单
+	 */
 	public void showGoodsFunction() {
 		CommonUtils.printText("goods_function.txt");
 	}

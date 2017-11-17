@@ -4,16 +4,20 @@ import java.util.Scanner;
 
 import com.feicuiedu.store.view.AdminView;
 
+/**
+ * 功能选择菜单
+ * @author 陈严
+ *
+ */
 public class AdminController {
 
 	private AdminView adminView;
 
-	public String chooseFunction() {
+	public String chooseFunction(Scanner scanner) {
 		
 		adminView = new AdminView();
 		adminView.showAdminFunction();
 		
-		Scanner scanner = new Scanner(System.in);
 		
 		int loginSelected = scanner.nextInt();
 		
@@ -21,7 +25,7 @@ public class AdminController {
 		if (1 == loginSelected) {
 			result = "goodsMaintain";
 		}
-		else if (1 == loginSelected) {
+		else if (2 == loginSelected) {
 			result = "userMaintain";
 		}
 		return result;

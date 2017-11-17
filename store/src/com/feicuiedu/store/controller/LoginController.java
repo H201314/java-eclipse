@@ -7,45 +7,63 @@ import com.feicuiedu.store.service.SystemService;
 import com.feicuiedu.store.util.CommonUtils;
 import com.feicuiedu.store.view.LoginView;
 
+/**
+ * 登录controller
+ * 
+ * @author 陈严
+ *
+ */
 public class LoginController {
 
 	private LoginView loginView;
 	private SystemService systemService;
 
-	public String login() throws ServiceException {
-		Scanner scanner = new Scanner(System.in);
+	/**
+	 * 登录的相关流程
+	 * 
+	 * @return
+	 * @throws ServiceException
+	 */
+	public String login(Scanner scanner) throws ServiceException {
+		
 		systemService = new SystemService();
+
 		loginView = new LoginView();
 		loginView.showLogin();
 		int loginSelected = scanner.nextInt();
 		String result = null;
-		
-		while (true) {
 
-			
-			if (1 == loginSelected) {
+		// 选择了登录
+		if (1 == loginSelected) {
+
+			while (true) {
 
 				try {
 
 					systemService.login(scanner);
+					
+					// 显示 “登录成功!”信息
+					System.out.println(CommonUtils.getPropValue("M001"));
+					break;
 				} catch (ServiceException e) {
 					System.out.println(e.getMessage());
 					continue;
 				}
 
-				System.out.print(CommonUtils.getPropValue("M001"));
-
-				result = "admin";
-
-			} else if (2 == loginSelected) {
-				result = "register";
-
 			}
+			
+			result = "admin";
+		}
+		// 选择了注册
+		else if (2 == loginSelected) {
+			result = "register";
 
-			break;
+		}
+		// 选择了退出
+		else if (3 == loginSelected) {
+			System.exit(0);
 		}
 
-		scanner.close();
 		return result;
 	}
 

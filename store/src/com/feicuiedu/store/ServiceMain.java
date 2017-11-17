@@ -1,5 +1,7 @@
 package com.feicuiedu.store;
 
+import java.util.Scanner;
+
 import com.feicuiedu.store.controller.AdminController;
 import com.feicuiedu.store.controller.GoodsController;
 import com.feicuiedu.store.controller.LoginController;
@@ -14,10 +16,11 @@ public class ServiceMain {
 
 	public void runService() {
 		LoginController loginController = new LoginController();
-		String result = null;
+		Scanner scanner = new Scanner(System.in);
 		
+		String result = null;
 			
-		result = loginController.login();
+		result = loginController.login(scanner);
 		
 		
 		if ("register".equals(result)) {
@@ -25,15 +28,17 @@ public class ServiceMain {
 		}
 		else if ("admin".equals(result)) {
 			
-			result = new AdminController().chooseFunction();
+			result = new AdminController().chooseFunction(scanner);
 		}
 		
 		if ("goodsMaintain".equals(result)) {
-			new GoodsController().chooseGoodsFunction();
+			new GoodsController().chooseGoodsFunction(scanner);
 		}
 		else if ("userMaintain".equals(result)) {
 			
 		}
+		
+		scanner.close();
 
 	}
 
