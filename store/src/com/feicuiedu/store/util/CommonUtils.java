@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
+import java.util.UUID;
+
+import com.feicuiedu.store.controller.BaseController;
 
 /**
  * 工具类
@@ -87,6 +90,44 @@ public class CommonUtils {
 			e.printStackTrace();
 		}
 		return prop.getProperty(key);
+	}
+	
+	/**
+	 * 随机生成UUID字符串
+	 * @return
+	 */
+	public static String getUUID() {
+		UUID uuid = UUID.randomUUID();
+		
+		return uuid.toString();
+	}
+	
+	/**
+	 * 根据key读取config.properties文件中反射配置的部分获取类的字符串返回对象
+	 * @param key
+	 * @return
+	 */
+	public static Object getObjectFromProp(String key) {
+		Object obj = null;
+		try {
+			obj = Class.forName("classStr").newInstance();
+			
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return obj;
+	}
+		
+	public static void main(String[] args) {
+		System.out.println(getUUID());
 	}
 
 }

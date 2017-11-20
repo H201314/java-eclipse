@@ -9,6 +9,9 @@ import com.feicuiedu.store.util.CommonUtils;
  */
 public class AdminView {
 
+	/**
+	 * 显示系统的功能菜单
+	 */
 	public void showAdminFunction() {
 		CommonUtils.printText("admin_function.txt");
 	}

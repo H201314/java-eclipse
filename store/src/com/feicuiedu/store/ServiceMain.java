@@ -2,10 +2,15 @@ package com.feicuiedu.store;
 
 import java.util.Scanner;
 
-import com.feicuiedu.store.controller.AdminController;
-import com.feicuiedu.store.controller.GoodsController;
+import com.feicuiedu.store.controller.BaseController;
 import com.feicuiedu.store.controller.LoginController;
+import com.feicuiedu.store.util.CommonUtils;
 
+/**
+ * 运行蕾
+ * @author 陈严
+ *
+ */
 public class ServiceMain {
 
 	public static void main(String[] args) {
@@ -14,29 +19,32 @@ public class ServiceMain {
 
 	}
 
+	/**
+	 * 运行业务
+	 */
 	public void runService() {
+		
+		// 创建登录的contller
 		LoginController loginController = new LoginController();
+		
+		// 定义人机交互的对象
 		Scanner scanner = new Scanner(System.in);
 		
-		String result = null;
-			
-		result = loginController.login(scanner);
+		// 根据login字符串 处理登录业务
+		BaseController controller = (BaseController) CommonUtils.getObjectFromProp("login");	
+		String result = controller.execute(scanner);
+		
+		// 执行登录操作
+		result = loginController.execute(scanner);
+		
+		//登录成功后选择的业务 商品维护  用户维护
+		controller = (BaseController) CommonUtils.getObjectFromProp(result);
+		result = controller.execute(scanner);
 		
 		
-		if ("register".equals(result)) {
-			
-		}
-		else if ("admin".equals(result)) {
-			
-			result = new AdminController().chooseFunction(scanner);
-		}
-		
-		if ("goodsMaintain".equals(result)) {
-			new GoodsController().chooseGoodsFunction(scanner);
-		}
-		else if ("userMaintain".equals(result)) {
-			
-		}
+		// 商品维护 或者用户维护选择后的操作
+		controller = (BaseController) CommonUtils.getObjectFromProp(result);
+		result = controller.execute(scanner);
 		
 		scanner.close();
 

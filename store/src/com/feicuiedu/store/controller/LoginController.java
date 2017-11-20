@@ -13,7 +13,7 @@ import com.feicuiedu.store.view.LoginView;
  * @author 陈严
  *
  */
-public class LoginController {
+public class LoginController extends BaseController{
 
 	private LoginView loginView;
 	private SystemService systemService;
@@ -24,8 +24,10 @@ public class LoginController {
 	 * @return
 	 * @throws ServiceException
 	 */
-	public String login(Scanner scanner) throws ServiceException {
+	@Override
+	public String execute(Scanner scanner) throws ServiceException {
 		
+
 		systemService = new SystemService();
 
 		loginView = new LoginView();

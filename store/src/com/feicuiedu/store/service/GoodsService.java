@@ -11,10 +11,9 @@ import com.feicuiedu.store.exception.ServiceException;
  * 
  * @author 陈严
  */
-public class GoodsService {
+public class GoodsService extends BaseService{
 
 	private GoodsDao goodsDao;
-	private String message;
 
 	/**
 	 * 新增goods对象
@@ -51,19 +50,14 @@ public class GoodsService {
 		
 		Goods rtnGoods = findById(goods.getId());
 		
-		
+		// 如果查询不到这个对象，那么说明商品不存在，业务中断
 		if (rtnGoods == null) {
-			message = "商品id" + goods.getId() + "不存在不能修改";
+			message = "商品id" + goods.getId() + "不存在，不能修改";
 			throw new ServiceException(message);
 			
 		}
-		else {
-			rtnGoods.setInventory(goods.getInventory());
-			rtnGoods.setName(goods.getName());
-			rtnGoods.setPrice(goods.getPrice());
-			
-			goodsDao.update(rtnGoods);
-		}
+
+		goodsDao.update(goods);
 		
 	}
 
@@ -73,6 +67,11 @@ public class GoodsService {
 		goodsDao.delete(goods);
 	}
 
+	/**
+	 * 获取goods.data中的商品集合
+	 * @return List<Goods>
+	 * @throws ServiceException
+	 */
 	public List<Goods> queryGoods() throws ServiceException {
 		goodsDao = new GoodsDao();
 		return goodsDao.query();

@@ -15,7 +15,7 @@ import com.feicuiedu.store.view.GoodsView;
  * @author 陈严
  *
  */
-public class GoodsController {
+public class GoodsController extends BaseController{
 
 	private GoodsView goodsView;
 
@@ -24,24 +24,32 @@ public class GoodsController {
 	/**
 	 * 商品维护相关功能
 	 */
-	public void chooseGoodsFunction(Scanner scanner) {
+	@Override
+	public String execute(Scanner scanner) {
 
 		goodsService = new GoodsService();
 		goodsView = new GoodsView();
 
 		while (true) {
+			
+			// 获取所有商品对象集合
 			List<Goods> listGoods = goodsService.queryGoods();
 			
+			// 如果集合中有商品
 			if(listGoods != null && !listGoods.isEmpty()) {
 				
+				// 按照格式显示商品清单
 				goodsView.showGoodsList(listGoods);
 			}
 			
+			// 显示 1.新增商品   * 2.修改商品 * 3.删除商品  * 4.查看商品详情 5.返回上一级 6.退出
 			goodsView.showGoodsFunction();
 			
 			int loginSelected = scanner.nextInt();
 
 			try {
+				
+				
 				if (1 == loginSelected) {
 
 					while (true) {
@@ -122,6 +130,11 @@ public class GoodsController {
 						}
 					}
 
+				}else if (5 == loginSelected) {
+					break;
+				}
+				else if (6 == loginSelected) {
+					System.exit(0);
 				}
 
 				
@@ -130,7 +143,8 @@ public class GoodsController {
 				continue;
 			}
 		}
-
+		
+		return null;
 	}
 
 	/**

@@ -19,60 +19,15 @@ import com.feicuiedu.store.util.CommonUtils;
  * 
  * @author 陈严
  */
-public class GoodsDao {
+public class GoodsDao extends BaseDao<Goods>{
 
-	private List<Goods> list;
 
-	private File file;
-
-	private ObjectOutputStream oos;
-
-	private String message;
-
-	private ObjectInputStream ois;
-
-	public List<Goods> getList() {
-		return list;
-	}
-
+	/**
+	 * 构造方法
+	 * 
+	 */
 	public GoodsDao() {
-
-		this.file = new File("goods.data");
-		try {
-			if (file.length() != 0) {
-
-				ois = new ObjectInputStream(new FileInputStream(file));
-
-				list = (List<Goods>) ois.readObject();
-
-				ois.close();
-			}
-			else {
-				list = new ArrayList<>();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			message = CommonUtils.getPropValue("E003") + "|" + e.getMessage();
-			throw new ServiceException(message);
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-			message = CommonUtils.getPropValue("E004") + "|" + e.getMessage();
-
-			throw new ServiceException(message);
-		} finally {
-			try {
-
-				if (ois != null) {
-
-					ois.close();
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
+		super("goods.data");
 	}
 
 	/**
@@ -81,6 +36,7 @@ public class GoodsDao {
 	 * 
 	 * @param goods
 	 */
+	@Override
 	public void save(Goods goods) {
 
 		this.list.add(goods);
@@ -88,10 +44,25 @@ public class GoodsDao {
 		this.update(goods);
 	}
 	
+	/**
+	 * 更新数据文件中的goods对象 
+	 * @param goods
+	 */
+	@Override
 	public void update(Goods goods) {
-
 		
-
+		// 根据id取出旧的goods对象，把用户输入的数据更换到旧的goods对象中去
+		for (Goods tmpGoods : list) {
+			if (tmpGoods.getId().equals(goods.getId())) {
+				tmpGoods.setInventory(goods.getInventory());
+				tmpGoods.setName(goods.getName());
+				tmpGoods.setPrice(goods.getPrice());
+				
+				break;
+			}
+		}
+		
+		
 		try {
 			oos = new ObjectOutputStream(new FileOutputStream(file));
 			oos.writeObject(list);
@@ -118,6 +89,7 @@ public class GoodsDao {
 	 * 删除一个goods对象
 	 * @param goods
 	 */
+	@Override
 	public void delete(Goods goods) {
 
 		Goods delGoods = findById(goods.getId());
@@ -149,9 +121,10 @@ public class GoodsDao {
 	}
 
 	/**
-	 * 查询出全部的goods对象
-	 * @return
+	 * 查询出全部的goods对象集合
+	 * @return List<Goods>
 	 */
+	@Override
 	public List<Goods> query() {
 
 		return this.list;
@@ -174,4 +147,24 @@ public class GoodsDao {
 		}
 		return null;
 	}
+	
+	/**
+	 * 根据给定的Goods对象，根据它的id来判断是不是在数据文件中存在，如果存在，则返回数据文件的对象
+	 * @param goods
+	 * @return
+	 */
+	@Override
+	public Goods findById(Goods goods) {
+
+		if (list != null) {
+			
+			for (Goods tmpGoods : list) {
+				if (goods.getId().equals(tmpGoods.getId())) {
+					return tmpGoods;
+				}
+			}
+		}
+		return null;
+	}
+
 }

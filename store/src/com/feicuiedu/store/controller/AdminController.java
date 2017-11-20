@@ -9,11 +9,17 @@ import com.feicuiedu.store.view.AdminView;
  * @author 陈严
  *
  */
-public class AdminController {
+public class AdminController extends BaseController{
 
 	private AdminView adminView;
 
-	public String chooseFunction(Scanner scanner) {
+	/**
+	 * 用户选择使用的功能 
+	 * @param scanner
+	 * @return String  goodsMaintain表示商品维护 userMaintain 用户维护
+	 */
+	@Override
+	public String execute(Scanner scanner) {
 		
 		adminView = new AdminView();
 		adminView.showAdminFunction();

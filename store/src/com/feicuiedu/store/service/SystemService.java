@@ -10,9 +10,8 @@ import com.feicuiedu.store.util.CommonUtils;
  * 
  * @author 陈严
  */
-public class SystemService {
+public class SystemService extends BaseService{
 
-	private String message;
 
 	/**
 	 * 处理登录判断
