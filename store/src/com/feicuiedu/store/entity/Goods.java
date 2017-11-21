@@ -13,7 +13,7 @@ public class Goods implements Serializable {
 		super();
 	}
 
-	public Goods(Integer id, Double price, Integer inventory, String name, String picIndex) {
+	public Goods(String id, Double price, Integer inventory, String name, String picIndex) {
 		super();
 		this.id = id;
 		this.price = price;
@@ -22,9 +22,16 @@ public class Goods implements Serializable {
 		this.picIndex = picIndex;
 	}
 
-	public Goods(Integer id, Double price, Integer inventory, String name) {
+	public Goods(String id, Double price, Integer inventory, String name) {
 		super();
 		this.id = id;
+		this.price = price;
+		this.inventory = inventory;
+		this.name = name;
+	}
+	
+	public Goods(Double price, Integer inventory, String name) {
+		super();
 		this.price = price;
 		this.inventory = inventory;
 		this.name = name;
@@ -33,7 +40,7 @@ public class Goods implements Serializable {
 	private static final long serialVersionUID = -5194140204917718400L;
 
 	// 商品id
-	private Integer id;
+	private String id;
 
 	// 价格
 	private Double price;
@@ -47,11 +54,11 @@ public class Goods implements Serializable {
 	// 图片
 	private String picIndex;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

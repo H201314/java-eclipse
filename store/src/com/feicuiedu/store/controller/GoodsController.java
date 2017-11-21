@@ -54,7 +54,7 @@ public class GoodsController extends BaseController{
 
 					while (true) {
 
-						// 请输入新的商品信息(商品id#价格#库存#名称)
+						// 请输入新的商品信息(价格#库存#名称)
 						System.out.print(CommonUtils.getPropValue("T003"));
 
 						String strGoods = scanner.next();
@@ -97,7 +97,7 @@ public class GoodsController extends BaseController{
 
 					while (true) {
 						System.out.print(CommonUtils.getPropValue("T005"));
-						Integer goodsId = scanner.nextInt();
+						String goodsId = scanner.next();
 						try {
 
 							Goods goods = new Goods();
@@ -117,7 +117,7 @@ public class GoodsController extends BaseController{
 					Goods goods = null;
 					while (true) {
 						System.out.print(CommonUtils.getPropValue("T005"));
-						Integer goodsId = scanner.nextInt();
+						String goodsId = scanner.next();
 						try {
 
 							goods = goodsService.findById(goodsId);
@@ -156,11 +156,10 @@ public class GoodsController extends BaseController{
 	private Goods stringToGoods(String strGoods) {
 
 		// 商品id#价格#库存#名称
-		Integer id = Integer.valueOf(strGoods.split("#")[0]);
-		Double price = Double.valueOf(strGoods.split("#")[1]);
-		Integer inventory = Integer.valueOf(strGoods.split("#")[2]);
-		String name = strGoods.split("#")[3];
+		Double price = Double.valueOf(strGoods.split("#")[0]);
+		Integer inventory = Integer.valueOf(strGoods.split("#")[1]);
+		String name = strGoods.split("#")[2];
 
-		return new Goods(id, price, inventory, name);
+		return new Goods(price, inventory, name);
 	}
 }

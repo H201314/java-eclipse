@@ -2,15 +2,11 @@ package com.feicuiedu.store.util;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
 import java.util.UUID;
-
-import com.feicuiedu.store.controller.BaseController;
 
 /**
  * 工具类
@@ -53,7 +49,6 @@ public class CommonUtils {
 	 */
 	public static String getStringFromText(String fileName) {
 		StringBuilder sb = new StringBuilder();
-		File file = new File(fileName);
 		try {
 			
 			InputStream is = CommonUtils.class.getClassLoader().getResourceAsStream(fileName);
@@ -78,7 +73,6 @@ public class CommonUtils {
 	 */
 	public static String getPropValue(String key) {
 
-		//File file = new File("config.properties");
 
 		InputStream is = CommonUtils.class.getClassLoader().getResourceAsStream("config.properties");
 		

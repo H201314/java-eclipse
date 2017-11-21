@@ -3,11 +3,10 @@ package com.feicuiedu.store;
 import java.util.Scanner;
 
 import com.feicuiedu.store.controller.BaseController;
-import com.feicuiedu.store.controller.LoginController;
 import com.feicuiedu.store.util.CommonUtils;
 
 /**
- * 运行蕾
+ * 运行类
  * @author 陈严
  *
  */

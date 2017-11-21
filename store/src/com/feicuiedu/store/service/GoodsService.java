@@ -84,7 +84,7 @@ public class GoodsService extends BaseService{
 	 * @return
 	 * @throws ServiceException
 	 */
-	public Goods findById(Integer id) throws ServiceException {
+	public Goods findById(String id) throws ServiceException {
 		goodsDao = new GoodsDao();
 
 		Goods rtnGoods = goodsDao.findById(id);

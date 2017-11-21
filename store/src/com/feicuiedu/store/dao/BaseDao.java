@@ -32,13 +32,13 @@ public abstract class BaseDao<T> {
 
 	public BaseDao(String fileName) {
 		// 初始化数据文件对象
-		this.file = new File(fileName);
+		this.file = new File(this.getClass().getClassLoader().getResource(fileName).getFile());
 		try {
 
 			// 判断数据文件是否为空，如果为空，则初始化list对象，如果不为空，则从数据文件中读取对象到list中
 			if (file.length() != 0) {
 
-				ois = new ObjectInputStream(new FileInputStream(file));
+				ois = new ObjectInputStream(this.getClass().getClassLoader().getResourceAsStream(fileName));
 
 				list = (List<T>) ois.readObject();
 

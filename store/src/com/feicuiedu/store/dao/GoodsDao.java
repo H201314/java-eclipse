@@ -1,12 +1,8 @@
 package com.feicuiedu.store.dao;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.feicuiedu.store.entity.Goods;
@@ -38,7 +34,7 @@ public class GoodsDao extends BaseDao<Goods>{
 	 */
 	@Override
 	public void save(Goods goods) {
-
+		goods.setId(CommonUtils.getUUID());
 		this.list.add(goods);
 
 		this.update(goods);
@@ -135,7 +131,7 @@ public class GoodsDao extends BaseDao<Goods>{
 	 * @param id
 	 * @return
 	 */
-	public Goods findById(Integer id) {
+	public Goods findById(String id) {
 
 		if (list != null) {
 			
