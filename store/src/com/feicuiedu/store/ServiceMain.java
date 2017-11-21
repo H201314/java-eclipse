@@ -24,18 +24,13 @@ public class ServiceMain {
 	 */
 	public void runService() {
 		
-		// 创建登录的contller
-		LoginController loginController = new LoginController();
-		
 		// 定义人机交互的对象
 		Scanner scanner = new Scanner(System.in);
 		
-		// 根据login字符串 处理登录业务
+		// 实例化LoginController对象,根据login字符串 处理登录业务
 		BaseController controller = (BaseController) CommonUtils.getObjectFromProp("login");	
 		String result = controller.execute(scanner);
-		
-		// 执行登录操作
-		result = loginController.execute(scanner);
+
 		
 		//登录成功后选择的业务 商品维护  用户维护
 		controller = (BaseController) CommonUtils.getObjectFromProp(result);

@@ -108,9 +108,13 @@ public class CommonUtils {
 	 * @return
 	 */
 	public static Object getObjectFromProp(String key) {
+		
+		String className = getPropValue(key);
 		Object obj = null;
 		try {
-			obj = Class.forName("classStr").newInstance();
+			
+			// 通过类的全名(含有包名)创建类的一个实例对象
+			obj = Class.forName(className).newInstance();
 			
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
