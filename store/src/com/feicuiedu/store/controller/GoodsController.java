@@ -3,10 +3,11 @@ package com.feicuiedu.store.controller;
 import java.util.List;
 import java.util.Scanner;
 
+import com.feicuiedu.store.common.exception.ServiceException;
+import com.feicuiedu.store.common.util.CommonUtils;
 import com.feicuiedu.store.entity.Goods;
-import com.feicuiedu.store.exception.ServiceException;
 import com.feicuiedu.store.service.GoodsService;
-import com.feicuiedu.store.util.CommonUtils;
+import com.feicuiedu.store.service.impl.GoodsServiceImpl;
 import com.feicuiedu.store.view.GoodsView;
 
 /**
@@ -27,7 +28,7 @@ public class GoodsController extends BaseController{
 	@Override
 	public String execute(Scanner scanner) {
 
-		goodsService = new GoodsService();
+		goodsService = new GoodsServiceImpl();
 		goodsView = new GoodsView();
 
 		while (true) {

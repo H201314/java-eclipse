@@ -1,6 +1,6 @@
 package com.feicuiedu.store.view;
 
-import com.feicuiedu.store.util.CommonUtils;
+import com.feicuiedu.store.common.util.CommonUtils;
 
 /**
  * 登录显示相关

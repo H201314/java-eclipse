@@ -2,9 +2,9 @@ package com.feicuiedu.store.controller;
 
 import java.util.Scanner;
 
-import com.feicuiedu.store.exception.ServiceException;
-import com.feicuiedu.store.service.SystemService;
-import com.feicuiedu.store.util.CommonUtils;
+import com.feicuiedu.store.common.exception.ServiceException;
+import com.feicuiedu.store.common.util.CommonUtils;
+import com.feicuiedu.store.service.impl.SystemServiceImpl;
 import com.feicuiedu.store.view.LoginView;
 
 /**
@@ -16,7 +16,7 @@ import com.feicuiedu.store.view.LoginView;
 public class LoginController extends BaseController{
 
 	private LoginView loginView;
-	private SystemService systemService;
+	private SystemServiceImpl systemService;
 
 	/**
 	 * 登录的相关流程
@@ -28,7 +28,7 @@ public class LoginController extends BaseController{
 	public String execute(Scanner scanner) throws ServiceException {
 		
 
-		systemService = new SystemService();
+		systemService = new SystemServiceImpl();
 
 		loginView = new LoginView();
 		loginView.showLogin();

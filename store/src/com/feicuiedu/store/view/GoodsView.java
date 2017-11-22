@@ -2,8 +2,8 @@ package com.feicuiedu.store.view;
 
 import java.util.List;
 
+import com.feicuiedu.store.common.util.CommonUtils;
 import com.feicuiedu.store.entity.Goods;
-import com.feicuiedu.store.util.CommonUtils;
 
 public class GoodsView {
 	

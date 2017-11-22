@@ -2,7 +2,7 @@ package com.feicuiedu.store.controller;
 
 import java.util.Scanner;
 
-import com.feicuiedu.store.exception.ServiceException;
+import com.feicuiedu.store.common.exception.ServiceException;
 
 /**
  * 注册用户业务
