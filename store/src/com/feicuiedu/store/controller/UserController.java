@@ -3,11 +3,11 @@ package com.feicuiedu.store.controller;
 import java.util.List;
 import java.util.Scanner;
 
+import com.feicuiedu.store.common.controller.impl.BaseController;
 import com.feicuiedu.store.common.exception.ServiceException;
 import com.feicuiedu.store.common.util.CommonUtils;
 import com.feicuiedu.store.entity.User;
 import com.feicuiedu.store.service.UserService;
-import com.feicuiedu.store.service.impl.UserServiceImpl;
 import com.feicuiedu.store.view.UserView;
 
 public class UserController extends BaseController {
@@ -17,7 +17,7 @@ public class UserController extends BaseController {
 
 	@Override
 	public String execute(Scanner scanner) throws ServiceException {
-		userService = new UserServiceImpl();
+		userService = (UserService) CommonUtils.getObjectFromProp("userSrv");
 		userView = new UserView();
 		//userService = new UserService();
 		while (true) {

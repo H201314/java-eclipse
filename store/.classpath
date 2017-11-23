@@ -6,6 +6,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/store-service"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/store-common"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/store-entity"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/store-service-imp"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

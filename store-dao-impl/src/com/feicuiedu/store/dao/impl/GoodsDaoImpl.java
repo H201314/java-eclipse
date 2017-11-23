@@ -9,6 +9,7 @@ import com.feicuiedu.store.common.dao.BaseDao;
 import com.feicuiedu.store.common.exception.ServiceException;
 import com.feicuiedu.store.common.util.CommonUtils;
 import com.feicuiedu.store.entity.Goods;
+import com.feiduiedu.store.dao.GoodsDao;
 
 /**
  * 
@@ -16,7 +17,7 @@ import com.feicuiedu.store.entity.Goods;
  * 
  * @author 陈严
  */
-public class GoodsDaoImpl extends BaseDao<Goods>{
+public class GoodsDaoImpl extends BaseDao<Goods> implements GoodsDao<Goods>{
 
 
 	/**
@@ -128,35 +129,17 @@ public class GoodsDaoImpl extends BaseDao<Goods>{
 	}
 
 	/**
-	 * 查询商品id值为传入id值的那个goods对象
-	 * @param id
-	 * @return
-	 */
-	public Goods findById(String id) {
-
-		if (list != null) {
-			
-			for (Goods goods : list) {
-				if (id.equals(goods.getId())) {
-					return goods;
-				}
-			}
-		}
-		return null;
-	}
-	
-	/**
 	 * 根据给定的Goods对象，根据它的id来判断是不是在数据文件中存在，如果存在，则返回数据文件的对象
 	 * @param goods
 	 * @return
 	 */
 	@Override
-	public Goods findById(Goods goods) {
-
+	public Goods findById(String id) {
+		
 		if (list != null) {
 			
 			for (Goods tmpGoods : list) {
-				if (goods.getId().equals(tmpGoods.getId())) {
+				if (((String)id).equals(tmpGoods.getId())) {
 					return tmpGoods;
 				}
 			}

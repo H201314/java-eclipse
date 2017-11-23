@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.feicuiedu.store.common.exception.ServiceException;
 import com.feicuiedu.store.common.service.BaseService;
 import com.feicuiedu.store.common.util.CommonUtils;
+import com.feicuiedu.store.service.SystemService;
 
 
 /**
@@ -12,7 +13,7 @@ import com.feicuiedu.store.common.util.CommonUtils;
  * 
  * @author 陈严
  */
-public class SystemServiceImpl extends BaseService{
+public class SystemServiceImpl extends BaseService implements SystemService{
 
 
 	/**
@@ -20,6 +21,7 @@ public class SystemServiceImpl extends BaseService{
 	 * 
 	 * @param scanner
 	 */
+	@Override
 	public void login(Scanner scanner) {
 
 		// 显示操作提示"请输入用户名:(想直接退出就输入exit)"

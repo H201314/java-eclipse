@@ -4,8 +4,9 @@ import java.util.List;
 
 import com.feicuiedu.store.common.dao.BaseDao;
 import com.feicuiedu.store.entity.User;
+import com.feiduiedu.store.dao.UserDao;
 
-public class UserDaoImpl extends BaseDao<User> {
+public class UserDaoImpl extends BaseDao<User> implements UserDao<User> {
 
 	public UserDaoImpl(String fileName) {
 		super(fileName);

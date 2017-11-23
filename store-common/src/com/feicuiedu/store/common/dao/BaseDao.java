@@ -1,7 +1,6 @@
 package com.feicuiedu.store.common.dao;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -79,17 +78,5 @@ public abstract class BaseDao<T> {
 		return list;
 	}
 	
-	/**
-	 * 保存T类型对象
-	 * @param object
-	 */
-	public abstract void save(T object);
 	
-	public abstract void update(T object);
-	
-	public abstract void delete(T object);
-	
-	public abstract List<T> query();
-	
-	public abstract T findById(T Object);
 }

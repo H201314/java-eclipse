@@ -2,6 +2,7 @@ package com.feicuiedu.store.controller;
 
 import java.util.Scanner;
 
+import com.feicuiedu.store.common.controller.impl.BaseController;
 import com.feicuiedu.store.common.exception.ServiceException;
 
 /**

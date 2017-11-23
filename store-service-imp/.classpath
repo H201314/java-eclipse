@@ -4,7 +4,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/store-common"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/store-service"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/store-dao-impl"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/store-entity"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/store-dao"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

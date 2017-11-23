@@ -2,8 +2,8 @@ package com.feicuiedu.store;
 
 import java.util.Scanner;
 
+import com.feicuiedu.store.common.controller.impl.BaseController;
 import com.feicuiedu.store.common.util.CommonUtils;
-import com.feicuiedu.store.controller.BaseController;
 
 /**
  * 运行类

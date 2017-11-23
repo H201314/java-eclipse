@@ -124,6 +124,35 @@ public class CommonUtils {
 		return obj;
 	}
 		
+	/**
+	 * 
+	 * @param className  类名 (simpleName)
+	 * @return
+	 */
+	public static Object getObjectFromClassName(String className) {
+		
+		//String className = getPropValue(key);
+		String packName= getPropValue("servicePackage");
+		Object obj = null;
+		try {
+			
+			// 通过类的全名(含有包名)创建类的一个实例对象
+			obj = Class.forName(packName+className).newInstance();
+			
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return obj;
+	}
+
 	public static void main(String[] args) {
 		System.out.println(getUUID());
 	}

@@ -4,9 +4,10 @@ import java.util.List;
 
 import com.feicuiedu.store.common.exception.ServiceException;
 import com.feicuiedu.store.common.service.BaseService;
-import com.feicuiedu.store.dao.impl.GoodsDaoImpl;
+import com.feicuiedu.store.common.util.CommonUtils;
 import com.feicuiedu.store.entity.Goods;
 import com.feicuiedu.store.service.GoodsService;
+import com.feiduiedu.store.dao.GoodsDao;
 
 /**
  * 商品服务具体业务
@@ -15,7 +16,7 @@ import com.feicuiedu.store.service.GoodsService;
  */
 public class GoodsServiceImpl extends BaseService implements GoodsService {
 
-	private GoodsDaoImpl goodsDao;
+	private GoodsDao goodsDao;
 	
 
 	/**
@@ -25,7 +26,7 @@ public class GoodsServiceImpl extends BaseService implements GoodsService {
 	 * @throws ServiceException
 	 */
 	public void saveGoods(Goods goods) throws ServiceException {
-		goodsDao = new GoodsDaoImpl();
+		goodsDao = (GoodsDao) CommonUtils.getObjectFromProp("goodsDao");
 		
 		Goods rtnGoods = findById(goods.getId());
 		
@@ -49,7 +50,7 @@ public class GoodsServiceImpl extends BaseService implements GoodsService {
 	 * @throws ServiceException
 	 */
 	public void updateGoods(Goods goods) throws ServiceException {
-		goodsDao = new GoodsDaoImpl();
+		goodsDao = (GoodsDao) CommonUtils.getObjectFromProp("goodsDao");
 		
 		Goods rtnGoods = findById(goods.getId());
 		
@@ -65,7 +66,7 @@ public class GoodsServiceImpl extends BaseService implements GoodsService {
 	}
 
 	public void deleteGoods(Goods goods) throws ServiceException {
-		goodsDao = new GoodsDaoImpl();
+		goodsDao = (GoodsDao) CommonUtils.getObjectFromProp("goodsDao");
 		
 		goodsDao.delete(goods);
 	}
@@ -76,7 +77,7 @@ public class GoodsServiceImpl extends BaseService implements GoodsService {
 	 * @throws ServiceException
 	 */
 	public List<Goods> queryGoods() throws ServiceException {
-		goodsDao = new GoodsDaoImpl();
+		goodsDao = (GoodsDao) CommonUtils.getObjectFromProp("goodsDao");
 		return goodsDao.query();
 	}
 
@@ -88,9 +89,10 @@ public class GoodsServiceImpl extends BaseService implements GoodsService {
 	 * @throws ServiceException
 	 */
 	public Goods findById(String id) throws ServiceException {
-		goodsDao = new GoodsDaoImpl();
+		goodsDao = (GoodsDao) CommonUtils.getObjectFromProp("goodsDao");
 
-		Goods rtnGoods = goodsDao.findById(id);
+		//goodsDao.findById(id);
+		Goods rtnGoods = (Goods) goodsDao.findById(id);
 
 		return rtnGoods;
 	}
