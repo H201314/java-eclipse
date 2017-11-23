@@ -10,10 +10,8 @@ import com.feicuiedu.store.common.controller.IController;
 public abstract class BaseController implements IController {
 
 	public BaseController() {
-		
+		init();
 	}
 	
-	
-	
-	
+	public abstract void init();
 }

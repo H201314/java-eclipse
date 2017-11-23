@@ -21,17 +21,11 @@ public class GoodsController extends BaseController{
 	private GoodsView goodsView;
 
 	private GoodsService goodsService;
-
 	/**
 	 * 商品维护相关功能
 	 */
 	@Override
 	public String execute(Scanner scanner) {
-
-		//goodsService = new GoodsServiceImpl();
-		//goodsService = (GoodsService) CommonUtils.getObjectFromProp("goodsSrv");
-		goodsService = (GoodsService) CommonUtils.getObjectFromClassName(GoodsService.class.getSimpleName()+"Impl");
-		
 		
 		goodsView = new GoodsView();
 
@@ -166,5 +160,11 @@ public class GoodsController extends BaseController{
 		String name = strGoods.split("#")[2];
 
 		return new Goods(price, inventory, name);
+	}
+
+	@Override
+	public void init() {
+		goodsService = (GoodsService) CommonUtils.getObjectFromClassName(GoodsService.class.getSimpleName()+"Impl");
+		
 	}
 }
